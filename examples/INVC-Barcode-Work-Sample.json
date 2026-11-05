@@ -1,0 +1,61 @@
+{
+  "schema": "invc-barcode-work/v1",
+  "batchId": "SAMPLE-25691105-001",
+  "exportedAt": "2026-11-05T09:30:00+07:00",
+  "warehouse": "medicine",
+  "warehouseLabel": "คลังยา",
+  "operator": "ผู้ทดสอบ",
+  "items": [
+    {
+      "tradeRecordNumber": 1001,
+      "code": "2000580",
+      "name": "(COMBO)TIOTROPIUM 2.5MCG+OLODATEROL2.5MCG(ED)",
+      "tradeName": "(COMBO)SPIOLTO RESPIMAT",
+      "dosageForm": "INHALER",
+      "unit": "SET",
+      "packRatio": 1,
+      "location": "W04",
+      "manufacturerCode": "M0001",
+      "manufacturer": "เบอริงเกอร์ อินเกลไฮม์ จำกัด",
+      "vendorCode": "V0001",
+      "vendor": "บริษัท ซิลลิค ฟาร์มา จำกัด",
+      "currentBarcode": "",
+      "lotCount": 1,
+      "lots": [{"recordNumber": 501,"lot":"505042C","expire":"2027-10-31","qty":38,"barcode":"","location":"W04"}]
+    },
+    {
+      "tradeRecordNumber": 1002,
+      "code": "2000990",
+      "name": "(KOCITAF) DTG 50MG/FTC 200MG/TAF 25MG",
+      "tradeName": "KOCITAF",
+      "dosageForm": "TABLET",
+      "unit": "TAB",
+      "packRatio": 30,
+      "location": "H03",
+      "manufacturerCode": "M0002",
+      "manufacturer": "MYLAN LABORATORIES LIMITED",
+      "vendorCode": "V0002",
+      "vendor": "กองควบคุมโรคเอดส์",
+      "currentBarcode": "",
+      "lotCount": 0,
+      "lots": []
+    },
+    {
+      "tradeRecordNumber": 1003,
+      "code": "1000820",
+      "name": "17-BETA ESTRADIOL 0.06% (80 GM)",
+      "tradeName": "OESTROGEL 80 GM",
+      "dosageForm": "GEL",
+      "unit": "TUBE",
+      "packRatio": 1,
+      "location": "U05",
+      "manufacturerCode": "M0003",
+      "manufacturer": "Besins Healthcare (Thailand) Co.,Ltd.",
+      "vendorCode": "V0003",
+      "vendor": "บริษัท ซิลลิค ฟาร์มา จำกัด",
+      "currentBarcode": "8851234567893",
+      "lotCount": 1,
+      "lots": [{"recordNumber": 503,"lot":"L260901","expire":"2028-01-31","qty":24,"barcode":"8851234567893","location":"U05"}]
+    }
+  ]
+}
