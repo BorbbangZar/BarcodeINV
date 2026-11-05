@@ -89,6 +89,7 @@
       manufacturerCode: normalizeText(raw.manufacturerCode ?? raw.manufacCode ?? raw.MANUFAC_CODE),
       manufacturer: normalizeText(raw.manufacturer ?? raw.manufacturerName ?? raw.MANUFACTURER_NAME),
       currentBarcode,
+      transferProof: normalizeText(raw.transferProof),
       scannedBarcode: normalizeText(raw.scannedBarcode),
       scannedAt: raw.scannedAt || null,
       operator: normalizeText(raw.operator),
@@ -121,6 +122,7 @@
       importedAt: nowIso(),
       warehouse: normalizeText(raw.warehouse) || 'inventory',
       warehouseLabel: normalizeText(raw.warehouseLabel) || 'คลังที่นำเข้า',
+      transferToken: normalizeText(raw.transferToken),
       operator: normalizeText(raw.operator),
       items: normalized
     };
@@ -394,6 +396,7 @@
       packRatio: item.packRatio,
       expectedBarcode: item.currentBarcode,
       newBarcode: item.scannedBarcode,
+      transferProof: item.transferProof,
       scannedAt: item.scannedAt,
       operator: item.operator || state.job.operator || ''
     }));
@@ -404,6 +407,7 @@
       sourceExportedAt: state.job.exportedAt,
       warehouse: state.job.warehouse,
       warehouseLabel: state.job.warehouseLabel,
+      transferToken: state.job.transferToken,
       exportedAt: nowIso(),
       operator: state.job.operator || '',
       resultCount: results.length,
