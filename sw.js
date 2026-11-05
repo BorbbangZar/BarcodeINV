@@ -1,4 +1,4 @@
-const CACHE = 'invc-barcode-v1';
+const CACHE = 'invc-barcode-v2-file-bridge';
 const ASSETS = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './vendor/zxing-browser.min.js'];
 
 self.addEventListener('install', event => {
