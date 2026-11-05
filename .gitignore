@@ -1,0 +1,7 @@
+.DS_Store
+Thumbs.db
+dist/
+*.local.json
+INVC-Barcode-Work-*.json
+INVC-Barcode-Result-*.json
+!examples/INVC-Barcode-Work-Sample.json

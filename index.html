@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#eaf7f8">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <title>INVC Barcode Workspace</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="menuButton" class="menuButton" type="button" aria-label="เปิดเมนู">☰</button>
+    <div class="brand"><span>✚</span><div><b>INVC</b><small>Barcode Workspace</small></div></div>
+    <div id="warehouseBadge" class="warehouseBadge">ยังไม่โหลดไฟล์งาน</div>
+    <div class="secureBadge"><i></i><span>LOCAL DATA</span></div>
+  </header>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sideTitle"><small>WORKSPACE</small><b>Inventory Center</b></div>
+    <nav><button class="active" type="button">▦ <span>จัดการ Barcode</span></button></nav>
+    <div class="sideActions">
+      <button id="sideImport" type="button">⇧ นำเข้าไฟล์งาน</button>
+      <button id="sideExport" type="button" disabled>⇩ ส่งออกผลสแกน</button>
+    </div>
+    <div class="privacyNote"><i></i><div><b>ทำงานในอุปกรณ์</b><small>ไม่ส่งข้อมูลยาและภาพกล้องออกจากเบราว์เซอร์</small></div></div>
+  </aside>
+
+  <main id="app"><div class="loading">กำลังเตรียมพื้นที่ทำงาน…</div></main>
+  <div id="scrim" class="scrim"></div>
+  <input id="fileInput" type="file" accept="application/json,.json" hidden>
+
+  <dialog id="assignDialog" class="assignDialog"><div id="assignBody"></div></dialog>
+  <dialog id="scannerDialog" class="scannerDialog">
+    <div class="scannerCard">
+      <div class="scannerHead"><div><small>สแกน Barcode</small><h2>วางรหัสให้อยู่กลางภาพ</h2></div><button id="scannerClose" type="button" aria-label="ปิด">×</button></div>
+      <div class="scannerFrame"><video id="scannerVideo" autoplay playsinline muted></video><i></i></div>
+      <p id="scannerStatus">กำลังเปิดกล้อง…</p>
+      <button id="scannerManual" class="scannerManual" type="button">ปิดกล้องและพิมพ์รหัสเอง</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./vendor/zxing-browser.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

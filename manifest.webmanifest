@@ -1,0 +1,12 @@
+{
+  "name": "INVC Barcode Workspace",
+  "short_name": "INVC Barcode",
+  "description": "สแกนและจัดเตรียม Barcode เพื่อนำกลับไปตรวจสอบในระบบ INVC",
+  "lang": "th",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3fafb",
+  "theme_color": "#eaf7f8",
+  "icons": []
+}
