@@ -15,7 +15,6 @@
     <button id="menuButton" class="menuButton" type="button" aria-label="เปิดเมนู">☰</button>
     <div class="brand"><span>✚</span><div><b>INVC</b><small>Barcode Workspace</small></div></div>
     <div id="warehouseBadge" class="warehouseBadge">ยังไม่โหลดไฟล์งาน</div>
-    <button id="userButton" class="userButton" type="button" hidden></button>
     <div class="secureBadge"><i></i><span>SYNC DATA</span></div>
   </header>
 
@@ -25,8 +24,7 @@
     <div class="sideActions">
       <button id="sideImport" type="button">⇧ นำเข้าไฟล์งาน</button>
       <button id="sideExport" type="button" disabled>⇩ ส่งออกผลสแกน</button>
-      <button id="sideUsers" type="button" hidden>♙ จัดการผู้ใช้งาน</button>
-      <button id="sideLogout" type="button" hidden>↪ ออกจากระบบ</button>
+      <button id="sideLogout" type="button" hidden>↪ ล็อกระบบ</button>
     </div>
     <div class="privacyNote"><i></i><div><b>ฐานข้อมูลกลาง</b><small>ข้อมูล Barcode ซิงก์ระหว่างอุปกรณ์ ภาพจากกล้องไม่ถูกอัปโหลด</small></div></div>
   </aside>
@@ -36,7 +34,6 @@
   <input id="fileInput" type="file" accept="application/json,.json" hidden>
 
   <dialog id="assignDialog" class="assignDialog"><div id="assignBody"></div></dialog>
-  <dialog id="usersDialog" class="assignDialog"><div id="usersBody"></div></dialog>
   <dialog id="scannerDialog" class="scannerDialog">
     <div class="scannerCard">
       <div class="scannerHead"><div><small>สแกน Barcode</small><h2>วางรหัสให้อยู่กลางภาพ</h2></div><button id="scannerClose" type="button" aria-label="ปิด">×</button></div>
