@@ -1,4 +1,4 @@
-const CACHE = 'invc-barcode-v3-supabase-collaboration';
+const CACHE = 'invc-barcode-v4-password-gate';
 const ASSETS = ['./', './index.html', './styles.css', './app-cloud.js', './supabase-config.js', './manifest.webmanifest', './vendor/zxing-browser.min.js', './vendor/supabase-2.119.0.js'];
 
 self.addEventListener('install', event => {
