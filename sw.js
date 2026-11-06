@@ -1,5 +1,5 @@
-const CACHE = 'invc-barcode-v2-file-bridge';
-const ASSETS = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './vendor/zxing-browser.min.js'];
+const CACHE = 'invc-barcode-v3-supabase-collaboration';
+const ASSETS = ['./', './index.html', './styles.css', './app-cloud.js', './supabase-config.js', './manifest.webmanifest', './vendor/zxing-browser.min.js', './vendor/supabase-2.119.0.js'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
