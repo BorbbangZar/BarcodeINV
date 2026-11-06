@@ -1,5 +1,5 @@
-const CACHE = 'invc-barcode-v5-password-gate';
-const ASSETS = ['./', './index.html', './styles.css?v=14', './app-cloud.js?v=14', './supabase-config.js?v=14', './manifest.webmanifest', './vendor/zxing-browser.min.js', './vendor/supabase-2.119.0.js'];
+const CACHE = 'invc-barcode-v6-password-gate';
+const ASSETS = ['./', './index.html', './styles.css?v=15', './app-cloud.js?v=15', './supabase-config.js?v=15', './manifest.webmanifest', './vendor/zxing-browser.min.js', './vendor/supabase-2.119.0.js'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
