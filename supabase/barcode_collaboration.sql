@@ -64,7 +64,7 @@ create table if not exists public.barcode_audit_logs (
   item_id uuid references public.barcode_items(id) on delete set null,
   actor_id uuid not null references auth.users(id),
   actor_name text,
-  action text not null check (action in ('import', 'scan', 'close', 'export', 'user_access')),
+  action text not null check (action in ('import', 'scan', 'unlink', 'close', 'export', 'user_access')),
   old_value text,
   new_value text,
   details jsonb not null default '{}'::jsonb,
@@ -408,6 +408,56 @@ begin
 end;
 $$;
 
+create or replace function public.barcode_unlink_scan(
+  p_item_id uuid,
+  p_expected_barcode text
+)
+returns jsonb
+language plpgsql
+security definer
+set search_path = pg_catalog, public
+as $$
+declare
+  v_item public.barcode_items%rowtype;
+  v_expected text := regexp_replace(coalesce(p_expected_barcode, ''), '\\s', '', 'g');
+  v_name text;
+begin
+  if not public.barcode_can_use() then raise exception 'BARCODE_PERMISSION_REQUIRED'; end if;
+
+  select i.* into v_item
+  from public.barcode_items i
+  join public.barcode_batches b on b.id = i.batch_id and b.status = 'active'
+  where i.id = p_item_id
+  for update of i;
+  if not found then raise exception 'ITEM_NOT_FOUND'; end if;
+  if v_item.new_barcode is null then
+    if coalesce(v_item.current_barcode, '') <> '' then
+      raise exception 'BARCODE_NOT_LINKED_BY_TEAM';
+    end if;
+    raise exception 'BARCODE_ALREADY_UNLINKED';
+  end if;
+  if v_item.new_barcode <> v_expected then raise exception 'BARCODE_CHANGED'; end if;
+
+  select display_name into v_name from public.profiles where id = auth.uid();
+  update public.barcode_items
+  set new_barcode = null,
+      scanned_at = null,
+      scanned_by = null,
+      scanned_by_name = null,
+      updated_at = now()
+  where id = v_item.id;
+
+  insert into public.barcode_audit_logs(
+    batch_id, item_id, actor_id, actor_name, action, old_value, new_value, details
+  ) values (
+    v_item.batch_id, v_item.id, auth.uid(), v_name, 'unlink', v_item.new_barcode, null,
+    jsonb_build_object('workingCode', v_item.working_code)
+  );
+
+  return jsonb_build_object('ok', true, 'itemId', v_item.id, 'removedBarcode', v_item.new_barcode);
+end;
+$$;
+
 create or replace function public.barcode_export_batch(p_batch_id uuid)
 returns jsonb
 language plpgsql
@@ -466,6 +516,7 @@ revoke execute on function public.barcode_create_batch(jsonb) from public, anon;
 revoke execute on function public.barcode_import_items(uuid, jsonb) from public, anon;
 revoke execute on function public.barcode_finalize_batch(uuid) from public, anon;
 revoke execute on function public.barcode_save_scan(uuid, text, text) from public, anon;
+revoke execute on function public.barcode_unlink_scan(uuid, text) from public, anon;
 revoke execute on function public.barcode_export_batch(uuid) from public, anon;
 
 grant execute on function public.barcode_ensure_profile(text) to authenticated;
@@ -474,6 +525,7 @@ grant execute on function public.barcode_create_batch(jsonb) to authenticated;
 grant execute on function public.barcode_import_items(uuid, jsonb) to authenticated;
 grant execute on function public.barcode_finalize_batch(uuid) to authenticated;
 grant execute on function public.barcode_save_scan(uuid, text, text) to authenticated;
+grant execute on function public.barcode_unlink_scan(uuid, text) to authenticated;
 grant execute on function public.barcode_export_batch(uuid) to authenticated;
 
 do $$
